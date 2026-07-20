@@ -1,0 +1,19 @@
+# Build directories
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Compiled files
+*.o
+*.a
+*.so
+*.out
+*.exe
+
+# Logs and temporary files
+*.log
+*.tmp
+*~
+.DS_Store
