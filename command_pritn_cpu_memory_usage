@@ -1,0 +1,35 @@
+watch -n 0.5 '
+echo "=== CPU POR HILO ==="
+ps -L -C hlle_visc \
+   -o pid,tid,psr,pcpu,comm \
+   --sort=psr
+
+echo
+echo "=== MEMORIA E I/O POR PROCESO ==="
+printf "%-8s %-10s %-12s %-12s\n" \
+       PID RAM_MiB READ_MiB WRITE_MiB
+
+for pid in $(pgrep -x hlle_visc); do
+    rss_kb=$(awk "/^VmRSS:/ {print \$2}" \
+        /proc/"$pid"/status 2>/dev/null)
+
+    read_bytes=$(awk "/^read_bytes:/ {print \$2}" \
+        /proc/"$pid"/io 2>/dev/null)
+
+    write_bytes=$(awk "/^write_bytes:/ {print \$2}" \
+        /proc/"$pid"/io 2>/dev/null)
+
+    awk \
+        -v pid="$pid" \
+        -v rss="${rss_kb:-0}" \
+        -v rb="${read_bytes:-0}" \
+        -v wb="${write_bytes:-0}" \
+        "BEGIN {
+            printf \"%-8s %-10.1f %-12.1f %-12.1f\n\",
+                   pid,
+                   rss / 1024,
+                   rb / 1048576,
+                   wb / 1048576
+        }"
+done
+'

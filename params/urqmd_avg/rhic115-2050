@@ -1,0 +1,41 @@
+outputDir       hydro_output/urqmd_avg/rhic115-2050
+
+! EoS type: 0 = complex EoS, 1 = simple table (eosFile)
+eosType       1
+eosFile         Laine_nf3.dat
+chiBfile        chiB.txt
+chiSfile        chiS.txt
+T_ch          0.165
+mu_b          0.0285
+mu_q         -0.001
+mu_s          0.007
+gammaS        0.935
+gammaFactor   0.75
+exclVolume    0.0
+
+etaS      0.2
+zetaS     0.0
+e_crit    0.5
+
+nx        161
+ny        161
+nz        101
+xmin     -20.0
+xmax      20.0
+ymin     -20.0
+ymax      20.0
+etamin   -2.5
+etamax    2.5
+
+! icModel: 1=Glauber, 2=input from file,  3= UrQMD IC (file)
+icModel    3
+glauberVar 1
+icInputFile ic/urqmd_avg/rhic115-2050/f14
+s0ScaleFactor  53.55
+epsilon0   30.0
+impactPar  0.0
+Rg      1.4
+Rgz     0.5
+tau0       2.1
+tauMax     18.0
+dtau       0.05

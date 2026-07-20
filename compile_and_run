@@ -1,0 +1,4 @@
+make OPENMP=1
+OMP_NUM_THREADS=12 OMP_DYNAMIC=FALSE OMP_PROC_BIND=close OMP_PLACES=cores /usr/bin/time ./hlle_visc   -params ../3/Hydro/vhlle_config   -ISinput ../3/IC/SMASH_IC.dat   -outputDir output
+
+OMP_NUM_THREADS=12 OMP_DYNAMIC=FALSE /usr/bin/time ./hlle_visc   -params ../3/Hydro/vhlle_config   -ISinput ../3/IC/SMASH_IC.dat   -outputDir output
